@@ -1,7 +1,15 @@
 version: '3.5'
 
 #  a docker-compose file that will spawn a seed and a couple of other nodes
-#     running the "docker-compose up" command, we will have a cluster of three nodes up and running
+#    running the "docker-compose up" command, we will have a cluster of three nodes up and running
+#    when run locally, ports 2552 (seed), 8000 (seed), 8001 (node1), 8002 (node2) will be up and LISTENING
+#    you can access the services as such:
+#      http://127.0.0.1:8000/health
+#        OK
+#      http://127.0.0.1:8000/status/members
+#        ["akka://cluster-playground@node1:1600", "akka://cluster-playground@node2:1600", "akka://cluster-playground@seed:2552"]
+#      http://127.0.0.1:8000/process/fibonacci/10
+#        { nodeId: "seed", result: 55 }
 networks:
   cluster-network:
 
