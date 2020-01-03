@@ -10,6 +10,10 @@ version: '3.5'
 #        ["akka://cluster-playground@node1:1600", "akka://cluster-playground@node2:1600", "akka://cluster-playground@seed:2552"]
 #      http://127.0.0.1:8000/process/fibonacci/10
 #        { nodeId: "seed", result: 55 }
+#        { nodeId: "node1", result: 55 }
+#        { nodeId: "node2", result: 55 }
+#        { nodeId: "seed", result: 55 }
+#        ... (round-robin) ...
 networks:
   cluster-network:
 
