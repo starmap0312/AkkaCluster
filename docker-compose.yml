@@ -9,7 +9,7 @@ services:
   seed:
     networks:
       - cluster-network
-    image: starmap/cluster-playground
+    image: starmap/akkacluster
     ports:
       - '2552:2552'
       - '8000:8000'
@@ -21,7 +21,7 @@ services:
   node1:
     networks:
       - cluster-network
-    image: starmap/cluster-playground
+    image: starmap/akkacluster
     ports:
       - '8001:8000'
     environment:
@@ -34,7 +34,7 @@ services:
   node2:
     networks:
       - cluster-network
-    image: starmap/cluster-playground
+    image: starmap/akkacluster
     ports:
       - '8002:8000'
     environment:
