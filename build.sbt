@@ -21,3 +21,16 @@ libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.+" % Test,
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test,
 )
+
+// to build docker image (other build.sbt properties)
+enablePlugins(JavaAppPackaging)
+enablePlugins(DockerPlugin)
+enablePlugins(AshScriptPlugin)
+
+mainClass in Compile := Some("akka_cluster.Server")
+dockerBaseImage := "java:8-jre-alpine"
+version in Docker := "latest"
+dockerExposedPorts := Seq(8000)
+dockerRepository := Some("starmap")
+// run "sbt docker:publishLocal" to build the image
+//   it will create a local image under REPOSITORY "starmap/akkacluster"   

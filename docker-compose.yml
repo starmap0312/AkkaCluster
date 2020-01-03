@@ -1,0 +1,45 @@
+version: '3.5'
+
+#  a docker-compose file that will spawn a seed and a couple of other nodes
+#     running the "docker-compose up" command, we will have a cluster of three nodes up and running
+networks:
+  cluster-network:
+
+services:
+  seed:
+    networks:
+      - cluster-network
+    image: starmap/cluster-playground
+    ports:
+      - '2552:2552'
+      - '8000:8000'
+    environment:
+      SERVER_IP: 0.0.0.0
+      CLUSTER_IP: seed
+      CLUSTER_SEED_IP: seed
+
+  node1:
+    networks:
+      - cluster-network
+    image: starmap/cluster-playground
+    ports:
+      - '8001:8000'
+    environment:
+      SERVER_IP: 0.0.0.0
+      CLUSTER_IP: node1
+      CLUSTER_PORT: 1600
+      CLUSTER_SEED_IP: seed
+      CLUSTER_SEED_PORT: 2552
+
+  node2:
+    networks:
+      - cluster-network
+    image: starmap/cluster-playground
+    ports:
+      - '8002:8000'
+    environment:
+      SERVER_IP: 0.0.0.0
+      CLUSTER_IP: node2
+      CLUSTER_PORT: 1600
+      CLUSTER_SEED_IP: seed
+      CLUSTER_SEED_PORT: 2552
