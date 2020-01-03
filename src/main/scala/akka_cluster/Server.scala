@@ -28,8 +28,10 @@ object Server extends App with NodeRoutes {
   Http().bindAndHandle(routes, address, port)
   println(s"Node $nodeId is listening at http://$address:$port")
   // http://127.0.0.1:8000/health
+  //   OK
   // http://127.0.0.1:8000/status/members
+  //   ["akka://cluster-playground@127.0.0.1:2552"]
   // http://127.0.0.1:8000/process/fibonacci/10
-
+  //   { nodeId: "127.0.0.1", result: 55 }
   Await.result(system.whenTerminated, Duration.Inf)
 }
